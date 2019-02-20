@@ -6,9 +6,9 @@
         <node name="urg_node_front" pkg="urg_node" type="urg_node" output="screen">
             <remap from="scan" to="front/scan"/>
             <param name="ip_address" value=""/>
-            <param name="serial_port" value="/dev/hokuyo_upper_right_socket"/>
+            <param name="serial_port" value="/dev/rpi_upper_right_socket"/>
             <param name="serial_baud" value="115200"/>
-            <param name="frame_id" value="laser"/>
+            <param name="frame_id" value="laser_front"/>
             <param name="calibrate_time" value="true"/>
             <param name="publish_intensity" value="false"/>
             <param name="publish_multiecho" value="false"/>
@@ -19,9 +19,9 @@
         <node name="urg_node_rear" pkg="urg_node" type="urg_node" output="screen">
             <remap from="scan" to="rear/scan"/>
             <param name="ip_address" value=""/>
-            <param name="serial_port" value="/dev/hokuyo_lower_right_socket"/>
+            <param name="serial_port" value="/dev/rpi_lower_right_socket"/>
             <param name="serial_baud" value="115200"/>
-            <param name="frame_id" value="laser"/>
+            <param name="frame_id" value="laser_rear"/>
             <param name="calibrate_time" value="true"/>
             <param name="publish_intensity" value="false"/>
             <param name="publish_multiecho" value="false"/>
@@ -31,7 +31,8 @@
         
         <!-- RAZOR_IMU -->
         <arg name="razor_config_file" default="$(find solabot_rpi)/params/my_razor.yaml"/>
-            <node pkg="razor_imu_9dof" type="solabot_imu.py" name="razor_imu" output="screen" >
+            <node pkg="razor_imu_9dof" type="imu_node.py" name="razor_imu" output="screen" >
+            	<remap from="imu" to="imu_data"/>
                 <rosparam file="$(arg razor_config_file)" command="load"/>
             </node>
         <!-- /SENSORS -->

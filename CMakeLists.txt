@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(solabot_navigation)
+project(solabot_rpi)
 
 ### Find catkin macros and libraries ###
 find_package(catkin REQUIRED COMPONENTS 
