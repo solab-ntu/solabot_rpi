@@ -1,2 +1,3 @@
 # solabot_rpi
-for raspberry pi
+a ros package for raspberry pi
+should be under workspace /src
