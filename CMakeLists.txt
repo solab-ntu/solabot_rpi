@@ -12,11 +12,11 @@ find_package(catkin REQUIRED COMPONENTS
 	std_msgs
 	visualization_msgs
 	move_base
-	gazebo_ros
 	    )
 
 
 generate_dynamic_reconfigure_options(
+ 	cfg/decode_vel_serial_out.cfg
 )
 
 ### Add support for c++11, supported in ROS Kinetic and later version ###
