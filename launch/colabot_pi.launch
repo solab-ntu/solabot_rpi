@@ -1,33 +1,23 @@
 <?xml version="1.0"?>
 <launch>
     <group ns="car1">
+
+        <!-- tf -->
+        <include file="$(find solabot_rpi)/launch/includes/tf_car1.xml"/>
+
         <!-- SENSORS -->    
         <!-- urg for hokuyo -->
-        <node name="urg_node_front" pkg="urg_node" type="urg_node" output="screen">
-            <remap from="scan" to="front/scan"/>
-            <param name="ip_address" value=""/>
-            <param name="serial_port" value="/dev/rpi_upper_right_socket"/>
-            <param name="serial_baud" value="115200"/>
-            <param name="frame_id" value="laser_front"/>
-            <param name="calibrate_time" value="true"/>
-            <param name="publish_intensity" value="false"/>
-            <param name="publish_multiecho" value="false"/>
-            <param name="angle_min" value="-2.094395"/>
-            <param name="angle_max" value="2.094395"/>
-        </node>
+        <include file="$(find solabot_rpi)/launch/includes/urg.xml">
+            <arg name="scan" value="front/scan"/>
+            <arg name="port" value="/dev/rpi_upper_right_socket"/>
+            <arg name="frame" value="car1_hokuyo_front_link"/>
+        </include>
 
-        <node name="urg_node_rear" pkg="urg_node" type="urg_node" output="screen">
-            <remap from="scan" to="rear/scan"/>
-            <param name="ip_address" value=""/>
-            <param name="serial_port" value="/dev/rpi_lower_right_socket"/>
-            <param name="serial_baud" value="115200"/>
-            <param name="frame_id" value="laser_rear"/>
-            <param name="calibrate_time" value="true"/>
-            <param name="publish_intensity" value="false"/>
-            <param name="publish_multiecho" value="false"/>
-            <param name="angle_min" value="-2.094395"/>
-            <param name="angle_max" value="2.094395"/>
-        </node>
+        <include file="$(find solabot_rpi)/launch/includes/urg.xml">
+            <arg name="scan" value="rear/scan"/>
+            <arg name="port" value="/dev/rpi_lower_right_socket"/>
+            <arg name="frame" value="car1_hokuyo_rear_link"/>
+        </include>
         
         <!-- RAZOR_IMU -->
         <arg name="razor_config_file" default="$(find solabot_rpi)/params/my_razor.yaml"/>
@@ -35,7 +25,8 @@
             	<remap from="imu" to="imu_data"/>
                 <rosparam file="$(arg razor_config_file)" command="load"/>
             </node>
-        <!-- /SENSORS -->
-	<node name="decode_cmd_vel_to_serial" pkg="solabot_rpi" type="decode_serial.py" respawn="true" />
+
+        <!-- decode cmd -->
+	    <node name="decode_cmd_vel_to_serial" pkg="solabot_rpi" type="decode_serial.py" respawn="true" />
     </group>
 </launch>

@@ -1,0 +1,5 @@
+<launch>
+    <node pkg="tf" type="static_transform_publisher" name="base_link2front_laser" args="129.5 0 0 0 0 0 car1_base_link car1_hokuyo_front_link 30"/>
+    <node pkg="tf" type="static_transform_publisher" name="base_link2rear_laser" args="-82.5 0 0 0 0 0 car1_base_link car1_hokuyo_rear_link 30"/>
+    <node pkg="tf" type="static_transform_publisher" name="base_link2imu" args="0 0 0 0 0 0 car1_base_link car1_imu_link 30"/>
+</launch>
