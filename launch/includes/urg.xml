@@ -13,7 +13,7 @@
       Otherwise, leave it blank. If supported by your LIDAR, you may enable the publish_intensity
       and/or publish_multiecho options. -->
 
-  <node name="urg_node" pkg="urg_node" type="urg_node" output="screen">
+  <node name="$(arg frame)_urg_node" pkg="urg_node" type="urg_node" output="screen">
     <remap from="scan" to="$(arg scan)"/>
     <param name="ip_address" value=""/>
     <param name="serial_port" value="$(arg port)"/>
