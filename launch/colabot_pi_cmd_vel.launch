@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <launch>
-    <group ns="car1">
+    <group ns="car2">
 	<node name="decode_cmd_vel_to_serial" pkg="solabot_rpi" type="decode_serial.py" respawn="true" />
     </group>
 </launch>

@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <launch>
-    <group ns="car1">
+    <group ns="car2">
 
         <!-- tf -->
-        <include file="$(find solabot_rpi)/launch/includes/tf_car1.xml"/>
+        <include file="$(find solabot_rpi)/launch/includes/tf_car2.xml"/>
 
         <!-- SENSORS -->    
         <!-- urg for hokuyo -->
         <include file="$(find solabot_rpi)/launch/includes/urg.xml">
             <arg name="scan" value="front/scan"/>
             <arg name="port" value="/dev/rpi_upper_right_socket"/>
-            <arg name="frame" value="car1_hokuyo_front_link"/>
+            <arg name="frame" value="car2_hokuyo_front_link"/>
         </include>
 
         <include file="$(find solabot_rpi)/launch/includes/urg.xml">
             <arg name="scan" value="rear/scan"/>
             <arg name="port" value="/dev/rpi_lower_right_socket"/>
-            <arg name="frame" value="car1_hokuyo_rear_link"/>
+            <arg name="frame" value="car2_hokuyo_rear_link"/>
         </include>
         
         <!-- RAZOR_IMU -->
