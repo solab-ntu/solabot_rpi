@@ -3,20 +3,20 @@
     <group ns="car1">
 
         <!-- tf -->
-        <include file="$(find solabot_rpi)/launch/includes/tf_car1.xml"/>
+        <include file="$(find solabot_rpi)/launch/includes/tf.xml"/>
 
         <!-- SENSORS -->    
         <!-- urg for hokuyo -->
         <include file="$(find solabot_rpi)/launch/includes/urg.xml">
             <arg name="scan" value="front/scan"/>
             <arg name="port" value="/dev/rpi_upper_right_socket"/>
-            <arg name="frame" value="car1_hokuyo_front_link"/>
+            <arg name="frame" value="hokuyo_front_link"/>
         </include>
 
         <include file="$(find solabot_rpi)/launch/includes/urg.xml">
             <arg name="scan" value="rear/scan"/>
             <arg name="port" value="/dev/rpi_lower_right_socket"/>
-            <arg name="frame" value="car1_hokuyo_rear_link"/>
+            <arg name="frame" value="hokuyo_rear_link"/>
         </include>
         
         <!-- RAZOR_IMU -->
@@ -27,8 +27,6 @@
             </node>
 
         <!-- decode cmd -->
-	    <node name="decode_cmd_vel_to_serial" pkg="solabot_rpi" type="decode_serial.py" respawn="true" >
-               <remap from="/car1/cmd_vel" to="/cmd_vel"/>
-	    </node>
+	    <node name="decode_cmd_vel_to_serial" pkg="solabot_rpi" type="decode_serial.py" respawn="true" />
     </group>
 </launch>
