@@ -8,30 +8,28 @@ For the rear car, please refer to branch `rear_car`.
 # RPI 3B+ running ROS
 
 ## Install Ubuntu Mate 
-credit: Yen-Chih Huang
 
-1. Win10 不能看到 PI_ROOT 分割區，建議用 Linux 系統安裝。
-2. 下載小組硬碟 solabot / Delta_SOLabot / RPI3B+ /
+1. Suggest using Linux to write image to SD Card, because Win10 can't see the PI_ROOT drive.
+2. Download following files
     - Ubuntu Mate SD.zip
     - PI_ROOT_ubuntu_sp.zip
     - PI_BOOT_ubuntu_sp.zip
-3. 將 Ubuntu Mate SD.zip 解壓縮得到 Ubuntu Mate SD.img，參考 [^mate] 的方法將 img 燒入 SDCard，完成後可看到 PI_BOOT 與 PI_ROOT 分割區。
-4. 將 PI_ROOT_ubuntu_sp.zip 解壓縮覆蓋至 PI_ROOT。
-5. 將 PI_BOOT_ubuntu_sp.zip 解壓縮覆蓋至 PI_BOOT。
-> 可用`sudo nautilus` 開啟權限
-6. 執行 ```rpi-update``` 更新 firmware，執行 ```sudo apt update``` 與 ```sudo apt upgrade``` 更新軟體。若wifi無法開啟見下方說明。
-7. 進 RPI 後，執行 ```sudo raspi-config``` 開啟 ssh、vnc、camera 等功能。 
-8. 若開機後卡在彩虹橋，則編輯 PI_BOOT / config.txt 新增文字 ```boot_delay=1```。[^config]
+> from MEGA: https://mega.nz/#F!OV1ijYZJ!wZOhqtJI25NNl4r8sGyKRw
+> or from SOLab GSuite Group (/solabot/Delta_SOLabot/RPI3B+/)
+
+3. Unzip Ubuntu Mate SD.zip，use ```dd``` comamnd to write the image into SD card.
+4. Unzip PI_ROOT_ubuntu_sp.zip, copy files into PI_ROOT drive。
+5. Unzip PI_BOOT_ubuntu_sp.zip, copy files into PI_BOOT drive。
+6. Boot in RPI and run ```rpi-update``` update the firmware，run ```sudo apt update``` and ```sudo apt upgrade``` to update software。
+7. If your RPI freeze at the rainbow screen when boot，them edit PI_BOOT / config.txt to set the option ```boot_delay=1```。[^config]
 
 ## wifi not working
-
-重啟動 NetworkManager 的 service 即可。
 
 ```bash
 sudo service NetworkManager restart
 ```
 
-## 開機不需登入，自動連網
+## auto connect wifi when boot (not login)
 
 修改 /etc/network/interfaces，刪除所有文字後，加入以下文字
 
@@ -197,5 +195,4 @@ Normally, it’s recommended to allow the step only in the first few updates, bu
 `makestep 1 -1`
 
 ### 參考
-[^mate]:https://ubuntu-mate.org/raspberry-pi/
 [^config]:https://raspberrypi.stackexchange.com/questions/19354/raspberry-pi-with-boots-up-with-rainbow-screen
