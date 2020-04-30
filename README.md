@@ -153,37 +153,10 @@ sudo chmod 666 /dev/razor_imu
 > this is will not rename the home folder (we should not) and gui login name (really strange). but the `whoami` and ssh username will change. this is what we need.
 * after cloning remember to change IP in .bashrc
 
-## Sync time (Chrony)(Not successful yet)
-Follow [this](https://answers.ros.org/question/298821/tf-timeout-with-multiple-machines/). 
+## Sync time (Chrony)
+https://wiki.ros.org/ROS/NetworkSetup#Timing_issues.2C_TF_complaining_about_extrapolation_into_the_future.3F
 
-[ref](https://blogging.dragon.org.uk/using-chrony-on-ubuntu-18-04/) (not so usefull)
-
-For the master: /etc/chrony/chrony.conf:
-```
-driftfile /var/lib/chrony/drift
-local stratum 8
-manual
-allow 192.168.50
-```
-
-For clients: /etc/chrony/chrony.conf:
-```
-server 192.168.50.68 iburst
-driftfile /var/lib/chrony/drift
-logdir /var/log/chrony
-log measurements statistics tracking
-local stratum 10
-allow 192.168.50.68
-makestep 1 -1
-
-```
-
-* command line
-reboot
-then  
-`sudo /etc/init.d/chrony start`
-`sudo /etc/init.d/chrony stop`
-
+>I set the `max_delay` to be `0.5`.
 
 * Accuracy 
 Typical accuracy between two machines synchronised over the Internet is within a few milliseconds; on a LAN, accuracy is typically in tens of microseconds.
