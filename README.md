@@ -158,14 +158,5 @@ https://wiki.ros.org/ROS/NetworkSetup#Timing_issues.2C_TF_complaining_about_extr
 
 >I set the `max_delay` to be `0.5`.
 
-* Accuracy 
-Typical accuracy between two machines synchronised over the Internet is within a few milliseconds; on a LAN, accuracy is typically in tens of microseconds.
-
-* makestep 0.1 10
-`makestep 0.1 10`:
-This would step system clock if the adjustment is larger than 0.1 seconds, but only in the first ten clock updates.
-Normally, it’s recommended to allow the step only in the first few updates, but in some cases (e.g. a computer without an RTC or virtual machine which can be suspended and resumed with an incorrect time) it may be necessary to allow the step on any clock update. The example above would change to:
-`makestep 1 -1`
-
 ### 參考
 [^config]:https://raspberrypi.stackexchange.com/questions/19354/raspberry-pi-with-boots-up-with-rainbow-screen
