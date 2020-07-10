@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <launch>
         <!-- tf -->
-        <include file="$(find solabot_rpi)/launch/includes/tf_one_lidar.xml"/>
+        <include file="$(find solabot_rpi)/launch/includes/tf.xml"/>
 
         <!-- SENSORS -->    
         <!-- urg for hokuyo -->
@@ -11,6 +11,11 @@
             <arg name="frame" value="hokuyo_front_link"/>
         </include>
 
+        <include file="$(find solabot_rpi)/launch/includes/urg.xml">
+            <arg name="scan" value="/rear/scan"/>
+            <arg name="port" value="/dev/rpi_lower_right_socket"/>
+            <arg name="frame" value="hokuyo_rear_link"/>
+        </include>
         
         <!-- RAZOR_IMU -->
         <arg name="razor_config_file" default="$(find solabot_rpi)/params/my_razor.yaml"/>
